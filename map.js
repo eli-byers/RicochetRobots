@@ -1,11 +1,15 @@
-// 1 - Yellow       1 - Moom
-// 2 - Red          2 - Sun
-// 3 - Blue         3 - Saturn
-// 4 - Green        4 - Star
+//             Target               ||       Map
+//                                  ||
+//   1 - Yellow       1 - Moom      ||   0 - wall
+//   2 - Red          2 - Sun       ||   1 - empty space
+//   3 - Blue         3 - Saturn    ||   2 - center
+//   4 - Green        4 - Star      ||
+//            55 - wild             ||
+//   Ex. 44 - Green Star            ||
+//
+//==========================================================
 
-// Ex. 44 - Green Star
-
-
+x
 var template = [
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1   ],
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1   ],
