@@ -16,7 +16,13 @@ var map = {
 
   },
   tileType: function(ul, br){
+    // -4 - inner corner
+    //  3 - two sides
+    //  6 - one sides
+    //  9 - empty
+    // >9 - special L
 
+    
   }
 
 };

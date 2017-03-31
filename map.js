@@ -359,6 +359,15 @@ function rotateClockwise(a, c) {
     return a;
 }
 
+function cellSum(arr, ul) {
+    var sum = 0;
+    for (var i = ul; i < ul + 3; i ++){
+        for (var j = br; j < br + 3; j ++){
+            
+        }
+    }
+}
+
 module.exports = {
     rotateCCw: rotateCounterClockwise,
     rotateCw: rotateClockwise,
