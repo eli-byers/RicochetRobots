@@ -175,3 +175,51 @@ var map3B = [
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   0, 2, 2   ],
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   0, 2, 2   ]
 ]
+
+function rotateCounterClockwise(a, c){
+    if (!c) c = 1;
+    else c = c % 4;
+    for (; c > 0; c--){
+        var n=a.length;
+        for (var i=0; i<n/2; i++) {
+            for (var j=i; j<n-i-1; j++) {
+                var tmp=a[i][j];
+                a[i][j]=a[j][n-i-1];
+                a[j][n-i-1]=a[n-i-1][n-j-1];
+                a[n-i-1][n-j-1]=a[n-j-1][i];
+                a[n-j-1][i]=tmp;
+            }
+        }
+    }
+    return a;
+}
+function rotateClockwise(a, c) {
+    if (!c) c = 1;
+    else c = c % 4;
+    for (; c > 0; c--){
+        var n=a.length;
+        for (var i=0; i<n/2; i++) {
+            for (var j=i; j<n-i-1; j++) {
+                var tmp=a[i][j];
+                a[i][j]=a[n-j-1][i];
+                a[n-j-1][i]=a[n-i-1][n-j-1];
+                a[n-i-1][n-j-1]=a[j][n-i-1];
+                a[j][n-i-1]=tmp;
+            }
+        }
+    }
+    return a;
+}
+
+module.exports = {
+    rotateCCw: rotateCounterClockwise,
+    rotateCw: rotateClockwise,
+    map1A: map1A,
+    map1B: map1B,
+    // map2A: map2A,
+    // map2B: map2B,
+    map3A: map3A,
+    map3B: map3B,
+    // map4A: map4A,
+    // map4B: map4B,
+}
