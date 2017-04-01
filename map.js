@@ -48,11 +48,11 @@ var template = [
 // One
 var map1A = [
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 0,   0, 1, 1,   1, 1, 1,   1, 1, 1   ],
-     [   1, 1, 1,   1,11, 1,   1, 1, 1,   1, 1, 1,   1, 1, 0,   0, 1, 1,   1, 1, 1,   1, 1, 1   ],
+     [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 0,   0, 1, 1,   1, 1, 1,   1, 1, 1   ],
      [   1, 1, 1,   1, 1, 0,   0, 0, 0,   1, 1, 1,   1, 1, 0,   0, 1, 1,   1, 1, 1,   1, 1, 1   ],
 
      [   1, 1, 1,   1, 1, 0,   0, 0, 0,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1   ],
-     [   1, 1, 1,   1, 1, 0,   0, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1   ],
+     [   1, 1, 1,   1, 1, 0,   0,11, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1   ],
      [   1, 1, 1,   1, 1, 0,   0, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1   ],
 
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1   ],
@@ -79,6 +79,8 @@ var map1A = [
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 0,   0,-1,-1   ],
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 0,   0,-1,-1   ]
 ]
+
+cellSum(map1A, )
 
 var map1B = [
      [   1, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 0,   0, 1, 1,   1, 1, 1,   1, 1, 1,   1, 1, 1   ],
@@ -359,24 +361,14 @@ function rotateClockwise(a, c) {
     return a;
 }
 
-function cellSum(arr, ul) {
+function cellSum(arr, cellX, cellY) {
+    cellX *= 3;
+    cellY *= 3;
     var sum = 0;
-    for (var i = ul; i < ul + 3; i ++){
-        for (var j = br; j < br + 3; j ++){
-            
+    for (var y = cellY; y < cellY + 3; y ++){
+        for (var x = cellX; x < cellX + 3; x ++){
+            sum += arr[y][x]
         }
     }
-}
-
-module.exports = {
-    rotateCCw: rotateCounterClockwise,
-    rotateCw: rotateClockwise,
-    map1A: map1A,
-    map1B: map1B,
-    map2A: map2A,
-    map2B: map2B,
-    map3A: map3A,
-    map3B: map3B,
-    map4A: map4A,
-    map4B: map4B,
+    return sum;
 }

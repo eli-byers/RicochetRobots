@@ -1,9 +1,7 @@
-var board = require('./map.js')
-
 
 var map = {
   canvas : document.getElementById("map"),
-  array : board.map1A,
+  array : map1A,
   cw : 20,
   render : function(){
 	this.canvas.width = map.cw * this.array[0].length;
@@ -11,18 +9,33 @@ var map = {
     this.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
   },
-  drawWall: function (r,c, ctx) {
-    // switch()
-
+  drawWall: function (cellX, cellY, ctx) {
+    var cellType = this.tileType(cellX, cellY);
+    // TODO: given code add image to canvase
   },
-  tileType: function(ul, br){
-    // -4 - inner corner
-    //  3 - two sides
-    //  6 - one sides
-    //  9 - empty
-    // >9 - special L
-
-    
+  tileType: function(cellX, cellY){
+    // TODO: make codes
+    var sum = cellSum(this.array, cellX, cellY)
+    switch (sum){
+        case -4:        // inner corner
+            console.log('inner corner');
+            break;
+        case 3:         // two sides
+            console.log('two sides');
+            break;
+        case 6:         // one side
+            console.log('one side');
+            break;
+        case 8:         // one corner
+            console.log('one corner');
+            break;
+        case 9:         // empty
+            console.log('empty');
+            break;
+        default:        // >9 special L
+            console.log('>9 special L');
+            break;
+    }
   }
 
 };
@@ -58,49 +71,13 @@ function Game (scene, map, info){
   this.time = 0;
   this.DEBUG = false;
   this.drawMap = function(){
-    for (var i = 0; i < this.map.array.length; i++){
-      for (var k = 0; k < this.map.array[i].length; k++){
-        this.map.drawWall(i,k, this.map.context);
+    for (var row = 0; row < this.map.array.length/3; row++){
+      for (var col = 0; col < this.map.array[row].length/3; col++){
+        this.map.drawWall(col, row, this.map.context);
       }
+    //   console.log('------------------------');
     }
   };
-//   this.updateGameArea = function(){
-//     if (this.paused){ return; }
-
-//     _this.time += 1/60;
-//     _this.scene.clear();
-
-
-
-//     // update everything
-//     for (var c = _this.scene.components.length-1; c >= 0; c--){ _this.scene.components[c].update(); }
-//     for (var g = _this.scene.robots.length-1; g >= 0; g--){ _this.scene.robots[g].update(); }
-
-//     // blink map
-//     if (_this.map.blink){ _this.map.drawWhiteWalls(); }
-
-//     _this.drawScore();
-//     _this.drawMessage();
-//     _this.spawnGhost();
-
-//     // path finding debug
-//     if (_this.DEBUG){
-//       // console.log(_this.map.pathMap);
-//       var ctx = _this.scene.context;
-//       ctx.fillStyle = 'teal';
-//       ctx.font = "10px Arial";
-
-//       for (var i in _this.map.pathMap){
-//         for (var k in _this.map.pathMap[i]){
-//           var y = (i * _this.map.cw)+_this.map.cw/2+3;
-//           var x = (k * _this.map.cw)+_this.map.cw/5+3;
-//           if (_this.map.pathMap[i][k] !== 1000 ){
-//             ctx.fillText(_this.map.pathMap[i][k]+"",x,y);
-//           }
-//         }
-//       }
-//     }
-//   };
 }
 
 //===============================
