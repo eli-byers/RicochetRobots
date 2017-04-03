@@ -370,3 +370,19 @@ function cellSum(arr, cellX, cellY) {
     }
     return sum;
 }
+
+function makeMap(m1, m2, m3, m4){
+    var map = []
+    ur =  rotateClockwise(m2);
+    br = rotateClockwise(m3,2);
+    bl = rotateCounterClockwise(m4);
+    for (var i = 0; i < m1.length; i++){
+        row = m1[i].concat(ur[i])
+        map.push(row);
+    }
+    for (var i = 0; i < bl.length; i++){
+        row = bl[i].concat(br[i])
+        map.push(row);
+    }
+    return map;
+}
