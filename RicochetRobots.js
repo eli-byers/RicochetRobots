@@ -2,7 +2,6 @@
 var map = {
   canvas : document.getElementById("map"),
   array : makeMap(map1A, map2A, map3A, map4A),
-//   array : map1A,
   cw : 21,
   render : function(){
 	this.canvas.width = this.cw * this.array[0].length;
@@ -27,15 +26,24 @@ var map = {
     var right = document.getElementById("EmptyR");
     for (var row = 0; row < this.array.length/3; row++){
       for (var col = 0; col < this.array[row].length/3; col++){
-        var x = col*this.cw*3
-        var y = row*this.cw*3
+        var x = col*this.cw*3;
+        var y = row*this.cw*3;
         if (row % 2 == 0){
             if (col % 2 == 0) this.context.drawImage(right, x, y);
             else this.context.drawImage(left, x, y);
         } else {
             if (col % 2 == 0) this.context.drawImage(left, x, y);
             else this.context.drawImage(right, x, y);
-        }        
+        }
+        var code = this.targetCode(col, row);
+        if (code > 1){
+            code = String(code).split("")
+            color = ['','Y','R','B','G',''];
+            shape = ['','M','Sn','Sa','St','BH'];
+            id = color[code[0]]+shape[code[1]];
+            var target = document.getElementById(id);
+            this.context.drawImage(target, x+this.cw/10, y+this.cw/10);
+        } 
       }
     }
   },
@@ -85,6 +93,12 @@ var map = {
         // default: console.log(sum);
     }
     if (sum > 9) return "L";
+  },
+  targetCode: function(cellX, cellY){
+    var y = (cellY*3)+1;
+    var x = (cellX*3)+1;
+    return this.array[y][x];
+
   },
   drawCorner: function(x, y, angle) { 
     var image = document.getElementById('Corner')
