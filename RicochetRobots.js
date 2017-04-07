@@ -32,10 +32,8 @@ var map = {
             this.context.drawImage(image, x, y)
             var code = targetCode(this.array, col, row);
             if (code > 1){
-                code = String(code).split("")
-                color = ['','Y','R','B','G',''];
-                shape = ['','M','Sn','Sa','St','BH'];
-                id = color[code[0]]+shape[code[1]];
+                code = String(code).split("");
+                id = makeTargetCode(code[0], code[1]);
                 var target = document.getElementById(id);
                 this.context.drawImage(target, x+this.cw/10, y+this.cw/10);
             } 
@@ -123,12 +121,14 @@ var scene = {
     canvas: document.getElementById("scene"),
     context: null,
     array: [],
-    placeholders: [],
     robots: [],
+    placeholders: [],
     history: [],
     paths: [],
     selectedBot: null,
     selectedDir: null,
+    roundTarget: null,
+    roundsPlayes: {},
     target: null,
     botMoving: false,
     resetting: null,
@@ -145,7 +145,7 @@ var scene = {
 
         // reset
         $('#reset').click(function(){
-            _this.selectedBot.selected = false;
+            if(_this.selectedBot) _this.selectedBot.selected = false;
             _this.selectedBot = null;
             _this.selectedDir = null;
             _this.target = null;
@@ -176,7 +176,9 @@ var scene = {
                 }
             }, 50);
 
-        })
+        });
+        
+        $('#newRound').click(function(){ _this.newRound() });
 
         // canvase click
         this.canvas.addEventListener('click', function(event) {
@@ -282,6 +284,29 @@ var scene = {
             var targetCell = wallCellInDirectionFrom(this.selectedDir, bot.cellX, bot.cellY, map.array, this.array)
             this.target = new BotTarget(targetCell.x, targetCell.y, this.context, bot);
         } else this.target = null;
+    },
+    newRound: function(){
+        this.placeholders = [];
+        this.history = [];
+        this.paths = [];
+        if (this.selectedBot) this.selectedBot.selected = false;
+        this.selectedBot = null;
+        this.selectedDir = null;
+        this.robots.forEach(function(robot){
+            robot.firstMove = true;
+        });
+        var code;
+        do {
+            var color = Math.round((Math.random() * 4) + 1)
+            var icon = color == 5? 5: Math.round((Math.random() * 3) + 1);
+            code = makeTargetCode(color, icon);
+            if (Object.keys(this.roundsPlayes).length == 16) this.roundsPlayes = {};
+        } while (this.roundsPlayes[code] == true)
+
+        this.roundsPlayes[code] = true;
+        var x = (this.canvas.width/2) - (21 * 1.5);
+        var y = (this.canvas.height/2) - (21 * 1.5);
+        this.roundTarget = new RoundTarget( x, y, this.context, code);
     }
 };
 
@@ -423,6 +448,19 @@ BotTarget.prototype.draw = function(){
     this.context.fill();
 }
 
+// =================  Round Targets  ==================
+
+function RoundTarget(x, y, context, code){
+    this.context = context;
+    this.image = document.getElementById(code);
+    this.x = x;
+    this.y = y;
+}
+RoundTarget.prototype.draw = function(){
+    this.context.drawImage(this.image, this.x, this.y);
+}
+
+
 // ======================  Game  ======================
 
 function Game (scene, map, info){
@@ -438,6 +476,7 @@ Game.prototype.init = function(){
     this.map.drawMap();
     this.scene.init();
     this.scene.initGameMap();
+    this.scene.newRound();
     this.interval = setInterval(this.updateGameArea, 20);
 }
 Game.prototype.updateGameArea = function(){
@@ -446,6 +485,7 @@ Game.prototype.updateGameArea = function(){
     _this.time += 1/50;
     _this.scene.clear();
     
+    if(_this.scene.roundTarget) _this.scene.roundTarget.draw();
     _this.scene.paths.forEach( function(path) { path.draw(); })
     _this.scene.placeholders.forEach( function(placeHolder) { placeHolder.draw(); })
     if (_this.scene.target) _this.scene.target.draw();

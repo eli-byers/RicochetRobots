@@ -524,3 +524,9 @@ function offsetFromDir(dir){
     }
     return {yOff:yOff, xOff:xOff}
 }
+
+function makeTargetCode(c,s){    
+    var color = ['','Y','R','B','G',''];
+    var shape = ['','M','Sn','Sa','St','BH'];
+    return color[c]+shape[s];
+}
