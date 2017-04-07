@@ -17,39 +17,50 @@
 <body onload="startGame()">
 
 	<canvas id="map"></canvas>
-	<canvas id="game"></canvas>
+	<canvas id="scene"></canvas>
 
-    <!-- map images -->
-    <img id="EmptyR" src="./images/map/EmptyR.png" hidden>
-    <img id="EmptyL" src="./images/map/EmptyL.png" hidden>
-    <img id="Corner" src="./images/map/Corner.png" hidden>
-    <img id="Corner" src="./images/map/Corner.png" hidden>
-    <img id="Straight" src="./images/map/Straight.png" hidden>
-    <img id="Center" src="./images/map/Center.png" hidden>
+    <button id='reset'>Reset Turn</button>
 
-    <!-- target images -->
+    <!-- map -->
+    <img id="EmptyR"    src="./images/map/EmptyR.png"       hidden>
+    <img id="EmptyL"    src="./images/map/EmptyL.png"       hidden>
+    <img id="Corner"    src="./images/map/Corner.png"       hidden>
+    <img id="Straight"  src="./images/map/Straight.png"     hidden>
+    <img id="Center"    src="./images/map/Center.png"       hidden>
     <!--moon-->
-    <img id="BM" src="./images/target/BM.png" hidden>
-    <img id="GM" src="./images/target/GM.png" hidden>
-    <img id="RM" src="./images/target/RM.png" hidden>
-    <img id="YM" src="./images/target/YM.png" hidden>
+    <img id="BM"        src="./images/target/BM.png"        hidden>
+    <img id="GM"        src="./images/target/GM.png"        hidden>
+    <img id="RM"        src="./images/target/RM.png"        hidden>
+    <img id="YM"        src="./images/target/YM.png"        hidden>
     <!--saturn-->
-    <img id="BSa" src="./images/target/BSa.png" hidden>
-    <img id="GSa" src="./images/target/GSa.png" hidden>
-    <img id="RSa" src="./images/target/RSa.png" hidden>
-    <img id="YSa" src="./images/target/YSa.png" hidden>
+    <img id="BSa"       src="./images/target/BSa.png"       hidden>
+    <img id="GSa"       src="./images/target/GSa.png"       hidden>
+    <img id="RSa"       src="./images/target/RSa.png"       hidden>
+    <img id="YSa"       src="./images/target/YSa.png"       hidden>
     <!--sun-->
-    <img id="BSn" src="./images/target/BSn.png" hidden>
-    <img id="GSn" src="./images/target/GSn.png" hidden>
-    <img id="RSn" src="./images/target/RSn.png" hidden>
-    <img id="YSn" src="./images/target/YSn.png" hidden>
+    <img id="BSn"       src="./images/target/BSn.png"       hidden>
+    <img id="GSn"       src="./images/target/GSn.png"       hidden>
+    <img id="RSn"       src="./images/target/RSn.png"       hidden>
+    <img id="YSn"       src="./images/target/YSn.png"       hidden>
     <!--star-->
-    <img id="BSt" src="./images/target/BSt.png" hidden>
-    <img id="GSt" src="./images/target/GSt.png" hidden>
-    <img id="RSt" src="./images/target/RSt.png" hidden>
-    <img id="YSt" src="./images/target/YSt.png" hidden>
+    <img id="BSt"       src="./images/target/BSt.png"       hidden>
+    <img id="GSt"       src="./images/target/GSt.png"       hidden>
+    <img id="RSt"       src="./images/target/RSt.png"       hidden>
+    <img id="YSt"       src="./images/target/YSt.png"       hidden>
     <!--black hole-->
-    <img id="BH" src="./images/target/BH.png" hidden>
+    <img id="BH"        src="./images/target/BH.png"        hidden>
+    <!--robots-->
+    <img id="RedR"      src="./images/pieces/RedR.png"      hidden>
+    <img id="GreenR"    src="./images/pieces/GreenR.png"    hidden>
+    <img id="BlueR"     src="./images/pieces/BlueR.png"     hidden>
+    <img id="YellowR"   src="./images/pieces/YellowR.png"   hidden>
+    <img id="SelectR"  src="./images/pieces/SelectR.png"  hidden>
+    <img id="ShadowR"  src="./images/pieces/ShadowR.png"  hidden>
+    <!--place holders-->
+    <img id="RedP"      src="./images/pieces/RedP.png"      hidden>
+    <img id="GreenP"    src="./images/pieces/GreenP.png"    hidden>
+    <img id="BlueP"     src="./images/pieces/BlueP.png"     hidden>
+    <img id="YellowP"   src="./images/pieces/YellowP.png"   hidden>
 
 	<!--<audio id="chomp" src="sounds/pacman_chomp.wav" style="display: none;"></audio>-->
 </body>

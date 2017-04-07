@@ -4,11 +4,11 @@ body {
   /*text-align: center;*/
 }
 
-#map, #game {
+#map, #scene {
   position: absolute;
   left: 10%;
 }
 
 
 #map { z-index: 0; }
-#game { z-index: 1; }
+#scene { z-index: 1; }
