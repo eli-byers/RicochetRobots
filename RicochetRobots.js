@@ -327,7 +327,6 @@ function Robot(cellX, cellY, context, color, image){
     this.x = (cellX * 3) * 21;
     this.y = (cellY * 3) * 21;
     this.direction = '';
-    this.speed = 0;
     this.startTime = 0;
     this.firstMove = true;
 }
@@ -345,8 +344,10 @@ Robot.prototype.update = function(){
     if (this.direction){        
         var offset = offsetFromDir(this.direction);
         this.startTime++;
-        this.x += offset.xOff * this.startTime;
-        this.y += offset.yOff * this.startTime;
+        var scalar = 1;
+        if (scene.resetting) scalar = 2.5;
+        this.x += offset.xOff * this.startTime * scalar;
+        this.y += offset.yOff * this.startTime * scalar;
         if (this.inHomeCell()) {
             this.startTime = 0;
             this.x = (this.cellX * 3) * 21;
