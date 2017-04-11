@@ -1,7 +1,7 @@
 var map = {
     canvas : document.getElementById("map"),
     context: null,
-    array : makeMap(map3A, map1B, map2A, map4A),
+    array : makeMap(map3B, map1A, map2B, map4B),
     cw : 21,
     init : function(){
         this.canvas.width = this.cw * this.array[0].length;
@@ -132,6 +132,8 @@ var scene = {
     target: null,
     botMoving: false,
     resetting: null,
+    time: null,
+    timer: null,
     cw: 21,
     mouseX: 0,
     mouseY: 0,
@@ -142,6 +144,17 @@ var scene = {
         this.canvas.height = (map.cw * map.array.length);
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+
+        $('#timerButton').click(function(){
+            // timer
+            _this.time = 60;
+            $('#timer').html(60);
+            _this.timer = setInterval(function(){
+                _this.time -= 1;
+                $('#timer').html(_this.time);
+                if (_this.time == 0) clearInterval(_this.timer);
+            }, 1000);
+        });
 
         // reset
         $('#reset').click(function(){
@@ -478,7 +491,7 @@ Game.prototype.init = function(){
     this.scene.init();
     this.scene.initGameMap();
     this.scene.newRound();
-    this.interval = setInterval(this.updateGameArea, 20);
+    this.interval = setInterval(this.updateGameArea, 16);
 }
 Game.prototype.updateGameArea = function(){
     _this = this.game;

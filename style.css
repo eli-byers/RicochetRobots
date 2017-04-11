@@ -12,3 +12,7 @@ body {
 
 #map { z-index: 0; }
 #scene { z-index: 1; }
+
+#timer {
+    color: white;
+}
